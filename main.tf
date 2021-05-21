@@ -26,6 +26,9 @@ provisioner "remote-exec" {
     "set-hostname ${var.COMPONENT}",
     "yum install epel-release -y",
     "yum install yum-utils -y",
+    "yum install ${var.REDIS_REPO} -y",
+    "yum-config-manager --enable remi",
+    "yum install redis -y",
      ]
 }
 
