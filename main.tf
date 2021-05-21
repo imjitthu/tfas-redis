@@ -29,10 +29,6 @@ provisioner "remote-exec" {
     "yum install ${var.REDIS_REPO} -y",
     "yum-config-manager --enable remi",
     "yum install redis -y",
-    "sed -i -e "s/127.0.0.1/0.0.0.0/" /etc/redis.conf",
-    "systemctl daemon-reload",
-    "systemctl enable redis",
-    "systemctl restart redis",
      ]
 }
 
