@@ -1,3 +1,0 @@
-COMPONENT: redis
-DOMAIN: jithendar.com
-REDIS_REPO: "http://rpms.remirepo.net/enterprise/remi-release-7.rpm"

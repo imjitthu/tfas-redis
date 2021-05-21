@@ -29,21 +29,12 @@ provisioner "remote-exec" {
     "yum install ${var.REDIS_REPO} -y",
     "yum-config-manager --enable remi",
     "yum install redis -y",
+    "sed -i -e "s/127.0.0.1/0.0.0.0/" /etc/redis.conf",
+    "systemctl daemon-reload",
+    "systemctl enable redis",
+    "systemctl restart redis"
      ]
 }
-
-- name: Update the BindIP in redif conf
-  replace:
-    path: /etc/redis.conf
-    regexp: '127.0.0.1'
-    replace: '0.0.0.0'
-
-- name: Starting {{COMPONENT}} services
-  systemd: 
-   daemon_reload: yes
-   enabled: yes
-   state: restarted
-   name: redis
 
 provisioner "local-exec" {
   command = "echo ${aws_instance.redis.public_ip} > redis_inv"
