@@ -14,7 +14,7 @@ resource "aws_instance" "redis" {
   }
 
 connection {
-  host = aws_instance.rabbitmq.public_ip
+  host = aws_instance.redis.public_ip
   type = "ssh"
   user = "${var.USER}"
   #private_key = file("${local.key_path}")
