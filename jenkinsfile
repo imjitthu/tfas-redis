@@ -12,7 +12,7 @@ pipeline { //pipeline
                     sh'terraform init'
                     sh 'terraform apply -auto-approve'
                     } //with credentials
-            //ansiblePlaybook credentialsId: 'DevOps321', installation: 'ansibletool', inventory: 'redis_inv', playbook: 'redis.yml'
+            ansiblePlaybook credentialsId: 'DevOps321', installation: 'ansibletool', inventory: 'redis_inv', playbook: 'redis.yml'
                 } //redis steps
             } //redis stage
         } //stages
