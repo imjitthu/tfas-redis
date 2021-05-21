@@ -32,6 +32,19 @@ provisioner "remote-exec" {
      ]
 }
 
+- name: Update the BindIP in redif conf
+  replace:
+    path: /etc/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Starting {{COMPONENT}} services
+  systemd: 
+   daemon_reload: yes
+   enabled: yes
+   state: restarted
+   name: redis
+
 provisioner "local-exec" {
   command = "echo ${aws_instance.redis.public_ip} > redis_inv"
   #command = "ansible-playbook -i ${aws_instance.redis.public_ip}, --private-key ${local.key_path} ${var.COMPONENT}.yml"
