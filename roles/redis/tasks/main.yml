@@ -1,0 +1,19 @@
+- name: Add {{COMPONENT}} repository
+  shell: |
+    yum install "{{REDIS_REPO}}" -y
+    yum-config-manager --enable remi
+    yum install redis -y
+
+- name: Update the BindIP in redif conf
+  replace:
+    path: /etc/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Starting {{COMPONENT}} services
+  systemd: 
+   daemon_reload: yes
+   enabled: yes
+   state: restarted
+   name: redis
+
