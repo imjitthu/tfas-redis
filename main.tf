@@ -32,7 +32,7 @@ provisioner "remote-exec" {
     "sed -i -e "s/127.0.0.1/0.0.0.0/" /etc/redis.conf",
     "systemctl daemon-reload",
     "systemctl enable redis",
-    "systemctl restart redis"
+    "systemctl restart redis",
      ]
 }
 
