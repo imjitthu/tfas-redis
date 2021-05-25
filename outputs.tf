@@ -1,3 +1,3 @@
 output "redis_PIP" {
-  value = aws_instance.redis.public_ip
+  value = aws_elasticache_cluster.redis.cache_nodes[0].address
 }
